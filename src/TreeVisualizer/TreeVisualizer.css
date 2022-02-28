@@ -1,0 +1,74 @@
+.tree {
+    display: flex;
+    justify-content: center;
+}
+.node {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 20px;
+}
+.node.node--left {
+    margin-right: 60px;
+}
+.node.node--right {
+    margin-left: 60px;
+}
+.node:not(.node--root) .node__link {
+    height: 20px;
+    width: 1px;
+    background-color: black;
+}
+.node__data {
+    display: flex;
+    width: 56px;
+    height: 56px;
+    border-radius: 56px;
+    border: 2px solid gray;
+    background-color: rgb(255, 255, 255);
+    justify-content: center;
+    align-items: center;
+}
+
+.node__children {
+    display: flex;
+    padding : 0 20px;
+    border-top: 1px solid black;
+}
+.node__line {
+    height: 20px;
+    width: 1px;
+    background-color: black;
+}
+
+.node__comparing {
+    background-color: rgb(255, 0, 0);
+}
+
+.node__found {
+    background-color: rgb(0, 255, 0);
+}
+
+.button_container {
+    position: fixed;
+    bottom: 0;
+    left:0;
+    right:0;
+    justify-content: center;
+}
+
+.temp {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+.status {
+    margin : 10px;
+}
+.temp .node__data{
+    position: relative;
+    left: 50%;
+    transform: translate(-50%,0);
+}
+
