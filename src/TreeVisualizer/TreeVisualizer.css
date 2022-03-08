@@ -114,10 +114,13 @@
     border-right: 1px solid black;
 }
 .status {
-    height: 20px;
-    padding: 1vw;
+    display: flex;
+    height: 60px;
+    padding: 0 1vw;
     width: 18vw;
     border-top: 1px solid black;
+    justify-content: center;
+    align-items: center;
 }
 .temp .node__data{
     position: relative;

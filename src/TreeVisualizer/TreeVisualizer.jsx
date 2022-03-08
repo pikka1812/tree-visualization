@@ -287,20 +287,20 @@ export default class TreeVisualizer extends React.Component {
         const height = tree.findHeight(tree.root);
         const checklist = generateChecklist("height");
         const history = this.state.history;
-        const result = this.state.result;
+        const result = [...this.state.result]; // deep clone an array to avoid pushing to original array mean instant update
 
         history.push("Height of the tree");
         this.setState({
             checklist: checklist,
-            history: history,
         });
 
         heightAnimation(tree.root, 0);
 
         result.push(height);
         setTimeout(() => {
+            clearAnimation(tree.root);
             this.setState({
-                result: result,
+                result : result,
             }); 
         }, height * 1000 + 2000);
     }
@@ -503,11 +503,23 @@ function heightAnimation(node, level = 0) {
         nodeElement.classList.add("node__processing");
 
         setTimeout(() => {
-            nodeElement.classList.remove("node_processing");
+            nodeElement.classList.remove("node__processing");
             nodeElement.classList.add("node__completed");
             nodeHeight.innerHTML = level - 1;
             heightAnimation(node.left, level);
             heightAnimation(node.right, level);
         }, 1000 );
+    }
+}
+
+function clearAnimation(node) {
+    if (node!== null) {
+        let nodeElement = document.getElementById(node.data).children[0];
+        let nodeHeight = document.getElementById(node.data).children[1];
+
+        nodeElement.classList.remove("node__completed");
+        nodeHeight.innerHTML = "";
+        clearAnimation(node.left);
+        clearAnimation(node.right);
     }
 }
