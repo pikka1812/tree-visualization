@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import TreeVisualizer from './TreeVisualizer/TreeVisualizer';
 import './App.css';
 

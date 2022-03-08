@@ -5,19 +5,32 @@
 .node {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    margin: 0 20px;
 }
 .node.node--left {
-    margin-right: 60px;
+    float: left;
+    width: 50%;
 }
 .node.node--right {
-    margin-left: 60px;
+    float: right;
+    width: 50%;
 }
-.node:not(.node--root) .node__link {
-    height: 20px;
-    width: 1px;
-    background-color: black;
+.node.node--root {
+    align-items: center;
+    width: 100%;
+}
+.node__container {
+    width: 100%;
+    display: flex;
+}
+
+.node__container .node__data {
+    margin-left: calc(50% - 30px);
+}
+.node__height {
+    width: 20px;
+    height: 60px;
+    font-size: 12px;
+    color: rgb(0, 0, 0);
 }
 .node__data {
     display: flex;
@@ -29,46 +42,116 @@
     justify-content: center;
     align-items: center;
 }
-
 .node__children {
-    display: flex;
-    padding : 0 20px;
-    border-top: 1px solid black;
+    width: 100%;
 }
-.node__line {
+
+.node__bottom {
+    height: 20px;
+    background-color: black;
+    width: 1px;
+}
+.node:not(.node--root) .node__bottom {
+    margin-left: 50%;
+}
+.node:not(.node--root) .node__top {
+    margin-left: 50%;
     height: 20px;
     width: 1px;
     background-color: black;
 }
-
-.node__comparing {
-    background-color: rgb(255, 0, 0);
+.node--left > .node__link  {
+    margin-left: 50%;
+    height: 1px;
+    background-color: black;
 }
 
-.node__found {
-    background-color: rgb(0, 255, 0);
+.node--right > .node__link {
+    margin-left: 50%;
+    height: 1px;
+    background-color: black;
+    transform-origin: left;
+    transform: rotateZ(180deg);
+}
+
+.node__processing {
+    background-color: rgb(252, 71, 71);
+}
+
+.node__completed {
+    background-color: rgb(1, 209, 1);
 }
 
 .button_container {
-    position: fixed;
-    bottom: 0;
-    left:0;
-    right:0;
+    display: flex;
     justify-content: center;
+    align-items: center;
+    border: 1px solid black;
 }
 
+.button_container > *{
+    margin: 10px 30px;
+    width: 10vw;
+}
+
+.utility {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid black;
+    border-left: 1px solid black;
+    border-right : 1px solid black;
+}
+.checklist, .history{
+    width: 40vw;
+    max-height: 140px;
+    overflow-y: auto;
+}
 .temp {
-    position: fixed;
-    bottom: 30px;
-    left: 50%;
-    transform: translate(-50%,0);
+    width: 20vw;
+    max-height: 130px;
+    padding-top: 10px;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
 }
 .status {
-    margin : 10px;
+    height: 20px;
+    padding: 1vw;
+    width: 18vw;
+    border-top: 1px solid black;
 }
 .temp .node__data{
     position: relative;
+    margin-bottom: 10px;
     left: 50%;
     transform: translate(-50%,0);
 }
+input {
+    text-align: center;
+    width: 50px;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+th, td {
+    padding : 10px 15px;
+}
+th {
+    background-color: #ececec;
+    position: sticky;
+    top: 0px;
+}
 
+button {
+    padding: 8px 12px;
+    font-size: 12px;
+}
+input {
+    font-size: 12px;
+    padding: 8px;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

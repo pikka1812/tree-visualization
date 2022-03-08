@@ -86,10 +86,42 @@ export class BinarySearchTree {
         tempTree.root = this.cloneNode(tree.root);
         return tempTree;
     }
+
+    findHeight(root) {
+        if (root === null ) return -1;
+        const left = this.findHeight(root.left);
+        const right = this.findHeight(root.right);
+        return left > right ? left + 1 : right + 1;
+    } 
+
+    preorder (node, arrayHolder) {
+        if (node !== null) {
+            arrayHolder.push(node.data);
+            arrayHolder = this.preorder(node.left, arrayHolder);
+            arrayHolder = this.preorder(node.right, arrayHolder);
+        }
+        return arrayHolder;
+    }
+
+    inorder (node, arrayHolder) {
+        if (node !== null) {
+            arrayHolder = this.inorder(node.left, arrayHolder);
+            arrayHolder.push(node.data);
+            arrayHolder = this.inorder(node.right, arrayHolder);
+        }
+        
+        return arrayHolder;
+    }
+
+    postorder(node, arrayHolder) {
+        if (node !== null) {
+            arrayHolder = this.postorder(node.left, arrayHolder);
+            arrayHolder = this.postorder(node.right, arrayHolder);
+            arrayHolder.push (node.data);
+        }
+        return arrayHolder;
+    }
     // Helper function
     // getRootNode()
-    // inorder(node)
-    // preorder(node)              
-    // postorder(node)
     // search(node, data)
 }
